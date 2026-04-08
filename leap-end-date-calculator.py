@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # version 1.00  -  python version of "End Date Calculator" in Leap Admin
 
 from datetime import datetime, timedelta
@@ -22,7 +23,8 @@ def leap_end_date_calculator(orig_date: datetime, num_months: int) -> datetime:
 
 
 def main():
-    print()
+    # Full reset (clears scrollback buffer as well)
+    print("\033c", end="")
     while True:
         try:
             # note: input() returns a string that needs to be converted to a datetime object
@@ -30,24 +32,36 @@ def main():
             date_str = date_str.replace("/", "-").strip()
             start_date: datetime = datetime.strptime(date_str, "%Y-%m-%d")
         except ValueError:
-            print("\033[31m \tInvalid date format! Please use YYYY-MM-DD or YYYY/MM/DD\033[0m")  
+            print("\033[31m \tInvalid date format! Please use YYYY-MM-DD or YYYY/MM/DD\033[0m")
+            continue
         else:
-            break
+            pass
 
-    while True:
+        while True:
+            try:
+                num_months: int = int(input("Duration in months 1..24?   ").strip())
+                if num_months < 1:
+                    raise ValueError()
+                    #return False
+            except ValueError:
+                print("\033[31m \tPlease enter a positive integer.\033[0m")
+                continue
+            else:
+                break
+
+        end_date: datetime = leap_end_date_calculator(start_date, num_months)
+        print(f"\nThe END date is: {end_date.strftime('%Y-%m-%d')}")
+        print()
+        # The loop will continue to allow the user to calculate another end date, or they can exit by pressing Ctrl+C
         try:
-            num_months: int = int(input("Duration in months 1..24?   ").strip())
-            if num_months < 1:
-                raise ValueError()
-                #return False
-        except ValueError:
-            print("\033[31m \tPlease enter a positive integer.\033[0m") 
+            input("Press Enter to continue, or press Ctrl+C to exit.\n")
+        except KeyboardInterrupt:
+            print("\n")
+            break   
         else:
-            break
-
-    end_date: datetime = leap_end_date_calculator(start_date, num_months)
-    print(f"\nThe END date is: {end_date.strftime('%Y-%m-%d')}")
-    print()
+            # Full reset (clears scrollback buffer as well)
+            print("\033c", end="")
+            continue
 
 
 if __name__ == "__main__":
