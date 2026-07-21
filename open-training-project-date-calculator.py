@@ -77,7 +77,7 @@ def main():
         + "  - Invite the attendees and project admins (if any)\n" \
         + "\n" \
         + f"Class name: {class_name_str}\n" \
-        + "Organization Admins: Kelly Novic, Sara Jamous\n" \
+        + "Organization Admins: Kelly Novic, Sara Jamous, Sebastian Gracia\n" \
         + "Additional Project Admins: \n" \
         + f"QuickStart Users: {num_qs_users_str}\n" \
         + "\n" \
