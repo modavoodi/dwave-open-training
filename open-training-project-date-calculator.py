@@ -73,12 +73,10 @@ def main():
     printout_message_str: str = "Hello Support,\n" \
         + "\n" \
         + f"Attached is the course roster for the upcoming Open Training class from {open_training_class_str}.\n" \
-        + "  - Provision the necessary project(s) in Leap\n" \
-        + "  - Invite the attendees and project admins (if any)\n" \
+        + "  - Provision the necessary project(s) in Leap and invite the attendees\n" \
+        + "  - These NEW instructors should be escalated to admin (specify if Project or Org Admin): \n" \
         + "\n" \
         + f"Class name: {class_name_str}\n" \
-        + "Organization Admins: Kelly Novic, Sara Jamous, Sebastian Gracia\n" \
-        + "Additional Project Admins: \n" \
         + f"QuickStart Users: {num_qs_users_str}\n" \
         + "\n" \
         + f"Project: Open Training {class_start_date.strftime('%Y/%m/%d')} Core\n" \
